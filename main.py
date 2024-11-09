@@ -20,9 +20,9 @@ key=os.environ['HUGGINGFACE_API_KEY']
 
 
 
-# repo_id = "mistralai/Mistral-7B-Instruct-v0.2"
+repo_id = "mistralai/Mistral-7B-Instruct-v0.2"
 
-repo_id = "meta-llama/Llama-3.2-1B"
+# repo_id = "meta-llama/Llama-3.2-1B"
 llm = HuggingFaceEndpoint(
     repo_id=repo_id,
     max_length=128,
@@ -90,6 +90,9 @@ rag_chain = ({"context": retriever, "question": RunnablePassthrough()}
             | llm)
 
 # Invoke the chain
-response = rag_chain.invoke("what is the age of the person?")
-print(response)
+
+def getLLMAnswer(query):
+
+    response = rag_chain.invoke(query)
+    return response
 
